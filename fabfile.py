@@ -363,7 +363,7 @@ def create():
                 return False
             remove()
         run("virtualenv %s --distribute" % env.proj_name)
-        vcs = "git" if env.repo_url.startswith("git") else "hg"
+        vcs = "hg" if env.repo_url.startswith("hg") else "git"
         run("%s clone %s %s" % (vcs, env.repo_url, env.proj_path))
 
     # Create DB and DB user.
@@ -401,7 +401,7 @@ def create():
     with project():
         if env.reqs_path:
             pip("-r %s/%s" % (env.proj_path, env.reqs_path))
-        pip("gunicorn setproctitle south psycopg2 "
+        pip("django gunicorn setproctitle south psycopg2 "
             "django-compressor python-memcached")
         manage("createdb --noinput --nodata")
         python("from django.conf import settings;"
@@ -479,7 +479,11 @@ def deploy():
     with project():
         backup("last.db")
         run("tar -cf last.tar %s" % static())
-        git = env.repo_url.startswith("git")
+        if env.repo_url.startswith('hg'):
+            git = False
+        else:
+            git = True
+        #git = env.repo_url.startswith("git")
         run("%s > last.commit" % "git rev-parse HEAD" if git else "hg id -i")
         with update_changed_requirements():
             run("git pull origin master -f" if git else "hg pull && hg up -C")
@@ -502,7 +506,11 @@ def rollback():
     """
     with project():
         with update_changed_requirements():
-            git = env.repo_url.startswith("git")
+            if env.repo_url.startswith('hg'):
+                git = False
+            else:
+                git = True
+            #git = env.repo_url.startswith("git")
             update = "git checkout" if git else "hg up -C"
             run("%s `cat last.commit`" % update)
         with cd(os.path.join(static(), "..")):
