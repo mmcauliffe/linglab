@@ -1,2 +1,2 @@
 Mezzanine==1.3.0
-mezzanine-themes
+-e https://github.com/renyi/mezzanine-themes.git#egg=mezzanine-themes
