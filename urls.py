@@ -4,12 +4,6 @@ from django.contrib import admin
 
 from mezzanine.core.views import direct_to_template
 
-from mezzanine.pages.views import page
-
-def home_page(request):
-    request.path = "/"
-    return page(request,"home")
-
 
 admin.autodiscover()
 
@@ -33,8 +27,7 @@ urlpatterns = patterns("",
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    #url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-    url("^$", home_page, name="home"),
+    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
