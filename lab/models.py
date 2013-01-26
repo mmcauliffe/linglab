@@ -32,7 +32,7 @@ class Collaborator(Person):
     
 class WrittenByLab(models.Model):
     person = models.ForeignKey(LabMember)
-    publication = models.ForeignKey('Publication')
+    publication = models.ForeignKey('ResearchResult')
     author_number = models.IntegerField()
     
     class Meta:
@@ -40,7 +40,7 @@ class WrittenByLab(models.Model):
     
 class WrittenByCollab(models.Model):
     person = models.ForeignKey(Collaborator)
-    publication = models.ForeignKey('Publication')
+    publication = models.ForeignKey('ResearchResult')
     author_number = models.IntegerField()
     
     class Meta:
