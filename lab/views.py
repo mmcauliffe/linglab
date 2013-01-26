@@ -18,6 +18,6 @@ def presentations(request):
     #pub_format = '%s (%s). %s'
     return render_to_response('lab/presentations.html',{'presents':presents})
     
-def person(request,member_id):
+def member(request,member_id):
     person = LabMember.objects.get(pk = member_id)
     return render_to_response('lab/member.html',{'person':person})
