@@ -31,7 +31,7 @@ class Collaborator(Person):
         ordering = ['last_name','first_name']
     
 class WrittenByLab(models.Model):
-    person = models.ForeignKey(Person)
+    person = models.ForeignKey(LabMember)
     publication = models.ForeignKey('Publication')
     author_number = models.IntegerField()
     
@@ -47,8 +47,8 @@ class WrittenByCollab(models.Model):
         ordering = ['author_number']
         
 class ResearchResult(models.Model):
-    lab_author = models.ManyToManyField(Person,through='WrittenByLab')
-    collaborator_author = models.ManyToManyField(Person,through='WrittenByCollab')
+    lab_author = models.ManyToManyField(LabMember,through='WrittenByLab')
+    collaborator_author = models.ManyToManyField(Collaborator,through='WrittenByCollab')
     year = models.IntegerField()
     title = models.CharField(max_length=500)
     pdf = models.FileField(upload_to = generate_file_name)
