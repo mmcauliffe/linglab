@@ -241,6 +241,7 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.pages",
     "mezzanine.galleries",
+    'lab',
     #"mezzanine.twitter",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
