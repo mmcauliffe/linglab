@@ -56,6 +56,7 @@ urlpatterns = patterns("",
     # page tree in the admin if it was installed.
 
     # url("^$", "mezzanine.blog.views.blog_post_list", name="home"),
+    ("^lab", include("lab.urls")),
 
     # MEZZANINE'S URLS
     # ----------------
