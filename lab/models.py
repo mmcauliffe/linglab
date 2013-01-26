@@ -10,6 +10,9 @@ class Person(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     
+    class Meta:
+        abstract = True
+    
     def __unicode__(self):
         return u'%s %s' % (self.first_name,self.last_name)
     
@@ -47,13 +50,14 @@ class WrittenByCollab(models.Model):
         ordering = ['author_number']
         
 class ResearchResult(models.Model):
-    lab_author = models.ManyToManyField(LabMember,through='WrittenByLab')
-    collaborator_author = models.ManyToManyField(Collaborator,through='WrittenByCollab')
+    lab_author = models.ManyToManyField(LabMember,through='WrittenByLab', related_name="%(app_label)s_%(class)s_related")
+    collaborator_author = models.ManyToManyField(Collaborator,through='WrittenByCollab', related_name="%(app_label)s_%(class)s_related")
     year = models.IntegerField()
     title = models.CharField(max_length=500)
     pdf = models.FileField(upload_to = generate_file_name)
     
     class Meta:
+        abstract = True
         ordering = ['-year','title']
     
     def get_authors(self):
