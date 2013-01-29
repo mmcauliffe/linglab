@@ -91,6 +91,12 @@ class Publication(models.Model):
         collabs = list(WrittenByCollab.objects.filter(publication=self))
         author_list = []
         for i in range(1,len(labs)+len(collabs)+1):
+            if len(collabs) == 0:
+                author_list.append(labs.pop(0))
+                continue
+            elif len(labs) == 0:
+                author_list.append(collabs.pop(0))
+                continue
             if labs[0].author_number < collabs[0].author_number:
                 author_list.append(labs.pop(0))
             else:
