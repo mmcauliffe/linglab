@@ -8,6 +8,6 @@ class LabMemberAdmin(admin.ModelAdmin):
 admin.site.register(LabMember,LabMemberAdmin)
 
 class PublicationAdmin(admin.ModelAdmin):
-    list_display = ('generate_key')
+    list_display = ('generate_key',)
     
 admin.site.register(Publication,PublicationAdmin)
