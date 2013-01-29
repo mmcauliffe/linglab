@@ -13,7 +13,7 @@
 	<ul>
 	{% for person in p.list %}
 		<li>
-		<a href= "{% url 'lab.views.member' person.id %}">{{ person.first_name }} {{ person.last_name }}</a>
+		<a href= "{% url lab.views.member person.id %}">{{ person.first_name }} {{ person.last_name }}</a>
 		</li>
 	{% endfor %}
     </ul>
