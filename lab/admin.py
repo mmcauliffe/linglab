@@ -23,6 +23,6 @@ class PresentationAdmin(admin.ModelAdmin):
 admin.site.register(Presentation,PresentationAdmin)
 
 class PositionAdmin(admin.ModelAdmin):
-    list_display = ('generate_key',)
+    list_display = ('title','importance')
     
 admin.site.register(Position,PositionAdmin)
