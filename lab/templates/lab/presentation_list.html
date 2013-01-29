@@ -1,0 +1,15 @@
+{% if year_pres %}
+<h3>Presentations</h3>
+<ul>
+{% for y in year_pres %}
+	<li><strong>{{ y.grouper }}</strong></li>
+	<ul>
+	{% for pres in y.list %}
+		<li>
+		{{ pres.get_author_string }} ({{ pres.year }}). {{ pres.title }}.  <em>{{ pres.conference }}</em>, {{ pres.location }}.
+		</li>
+	{% endfor %}
+    </ul>
+{% endfor %}
+</ul>
+{% endif %}

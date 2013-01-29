@@ -6,17 +6,6 @@
 
 {% block main %}
 
-{% regroup presents by year as year_list %}
-<ul>
-{% for y in year_list %}
-	<li><strong>{{ y.grouper }}</strong></li>
-	<ul>
-	{% for pres in y.list %}
-		<li>
-		{{ pres.get_author_string }} ({{ pres.year }}). {{ pres.title }}.  <em>{{ pres.conference }}</em>, {{ pres.location }}.
-		</li>
-	{% endfor %}
-    </ul>
-{% endfor %}
-</ul>
+{% regroup presents by year as year_pres %}
+{% include "lab/presentation_list.html"%}
 {% endblock %}

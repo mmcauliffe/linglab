@@ -24,4 +24,8 @@
 {% include "lab/publication_list.html"%}
 </div>
 
+<div>{% regroup person.presentation_set.all by year as year_pres %}
+{% include "lab/presentation_list.html"%}
+</div>
+
 {% endblock %}

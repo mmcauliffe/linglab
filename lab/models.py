@@ -25,6 +25,7 @@ class Collaborator(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     link = models.URLField(max_length=250,null=True,blank=True)
+    listable = models.BooleanField(default=False)
     
     class Meta:
         ordering = ['last_name','first_name']

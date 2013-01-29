@@ -1,3 +1,5 @@
+{% if year_pubs %}
+<h3>Publications</h3>
 <ul>
 {% for y in year_pubs %}
 	<li><strong>{{ y.grouper }}</strong></li>
@@ -17,3 +19,4 @@
     </ul>
 {% endfor %}
 </ul>
+{% endif %}
