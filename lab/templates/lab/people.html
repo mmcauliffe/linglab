@@ -1,1 +1,22 @@
+{% extends "lab/base.html" %}
+{% load i18n %}
 
+{% block meta_title %}{% trans "People" %}{% endblock %}
+{% block title %}{% trans "People" %}{% endblock %}
+
+{% block main %}
+
+{% regroup members by position as pos_list %}
+<ul>
+{% for p in pos_list %}
+	<li><strong>{{ p.grouper }}</strong></li>
+	<ul>
+	{% for person in p.list %}
+		<li>
+		<a href= "{% url 'lab.views.member' person.id %}">{{ person.first_name }} {{ person.last_name }}</a>
+		</li>
+	{% endfor %}
+    </ul>
+{% endfor %}
+</ul>
+{% endblock %}
