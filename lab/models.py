@@ -145,19 +145,25 @@ class Presentation(models.Model):
         ordering = ['-year','title']
     
     def get_authors(self):
-        labs = list(self.lab_authorset.all())
-        collabs = list(self.collaborator_authorset.all())
+        labs = list(PresentedByLab.objects.filter(publication=self))
+        collabs = list(PresentedByCollab.objects.filter(publication=self))
         author_list = []
         for i in range(1,len(labs)+len(collabs)+1):
+            if len(collabs) == 0:
+                author_list.append(labs.pop(0).person)
+                continue
+            elif len(labs) == 0:
+                author_list.append(collabs.pop(0).person)
+                continue
             if labs[0].author_number < collabs[0].author_number:
-                author_list.append(labs.pop(0))
+                author_list.append(labs.pop(0).person)
             else:
-                author_list.append(collabs.pop(0))
+                author_list.append(collabs.pop(0).person)
         return author_list
         
     def get_author_string(self):
         authors = self.get_authors()
-        if len(authors) == 0:
+        if len(authors) == 1:
             return '%s, %s.' % (authors[0].last_name,authors[0].first_name[0])
         author_string = '%s and %%s' % ('%s, ' * (len(authors)-1))
         author_string = author_string % tuple('%s, %s.' % (x.last_name,x.first_name[0]) for x in authors)
