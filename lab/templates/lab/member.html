@@ -1,12 +1,13 @@
 {% extends "linglab/index.html" %}
 {% load i18n %}
 
-{% block meta_title %}{% trans "People" %} - {{ person.first_name }} {{ person.last_name }}{% endblock %}
-{% block title %}{% trans "People" %} - {{ person.first_name }} {{ person.last_name }}{% endblock %}
+{% block meta_title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
+{% block title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
 
 {% block main %}
 
-<h1>{{ person.first_name }} {{ person.last_name }}</h1>
+<h3>{{ person.position }}</h3>
+<p><a href="{{ person.email }}">{{ person.email }}</a></a></p>
 
 {% if person.picture %}
 <img src="{{person.picture.url}}">
