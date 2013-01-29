@@ -13,6 +13,11 @@
 <img src="{{person.picture.url}}">
 {% endif %}
 
+{% if person.research_interests %}
+<h3>Research interests</h3>
+<p>{{person.research_interests}}</p>
+{% endif %}
+
 {% regroup person.pubs by year as year_list %}
 <ul>
 {% for y in year_list %}
