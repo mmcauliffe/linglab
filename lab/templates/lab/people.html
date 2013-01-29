@@ -6,7 +6,7 @@
 
 {% block main %}
 
-{% regroup people by position as pos_list %}
+{% regroup members by position as pos_list %}
 <ul>
 {% for p in pos_list %}
 	<li><strong>{{ p.grouper }}</strong></li>
