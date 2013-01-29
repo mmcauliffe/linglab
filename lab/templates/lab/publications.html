@@ -5,17 +5,6 @@
 
 {% block main %}
 
-{% regroup pubs by year as year_list %}
-<ul>
-{% for y in year_list %}
-	<li><strong>{{ y.grouper }}</strong></li>
-	<ul>
-	{% for pub in y.list %}
-		<li>
-		{{ pub.get_author_string }} ({{ pub.year }}). {{ pub.title }}.  <em>{{ pub.journal }}</em>, {{ pub.volume }}, {{ pub.number }}, {{ pub.pages }}.
-		</li>
-	{% endfor %}
-    </ul>
-{% endfor %}
-</ul>
+{% regroup pubs by year as year_pubs %}
+{% include "lab/publication_list.html"%}
 {% endblock %}
