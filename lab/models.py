@@ -164,3 +164,6 @@ class Presentation(models.Model):
 class Position(models.Model):
     title = models.CharField(max_length = 100)
     importance = models.IntegerField()
+    
+    def __unicode__(self):
+        return self.title
