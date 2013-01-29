@@ -5,7 +5,7 @@ from .models import LabMember,Collaborator,Publication
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('first_name','last_name','email')
     
-admin.site.register(Member,MemberAdmin)
+admin.site.register(LabMember,LabMemberAdmin)
 
 class PublicationAdmin(admin.ModelAdmin):
     list_display = ('generate_key')
