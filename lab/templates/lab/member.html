@@ -7,7 +7,7 @@
 {% block main %}
 <div>
 {% if person.picture %}
-<img src="{{person.picture.url}}">
+<img src="{{person.picture.url}}" width=300>
 {% endif %}
 <span><strong>{{ person.position }}</strong></span>
 <span><a href="{{ person.email }}">{{ person.email }}</a></span>
