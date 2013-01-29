@@ -87,8 +87,8 @@ class Publication(models.Model):
         ordering = ['-year','title']
     
     def get_authors(self):
-        labs = list(self.lab_authorset.all())
-        collabs = list(self.collaborator_authorset.all())
+        labs = list(self.WrittenByLab.all())
+        collabs = list(self.WrittenByCollab.all())
         author_list = []
         for i in range(1,len(labs)+len(collabs)+1):
             if labs[0].author_number < collabs[0].author_number:
@@ -138,7 +138,7 @@ class Presentation(models.Model):
         ordering = ['-year','title']
     
     def get_authors(self):
-        labs = list(self.presented_by_lab.all())
+        labs = list(self.PresentedByLab.all())
         collabs = list(self.collaborator_authorset.all())
         author_list = []
         for i in range(1,len(labs)+len(collabs)+1):
