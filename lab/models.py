@@ -138,7 +138,7 @@ class Presentation(models.Model):
         ordering = ['-year','title']
     
     def get_authors(self):
-        labs = list(self.lab_authorset.all())
+        labs = list(self.presented_by_lab.all())
         collabs = list(self.collaborator_authorset.all())
         author_list = []
         for i in range(1,len(labs)+len(collabs)+1):
