@@ -8,7 +8,7 @@ class LabMemberAdmin(admin.ModelAdmin):
 admin.site.register(LabMember,LabMemberAdmin)
 
 class CollaboratorAdmin(admin.ModelAdmin):
-    list_display = ('first_name','last_name','email')
+    list_display = ('first_name','last_name','link')
     
 admin.site.register(Collaborator,CollaboratorAdmin)
 
