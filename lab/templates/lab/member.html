@@ -14,13 +14,13 @@
 <span><a href="{{ person.email }}">{{ person.email }}</a></span>
 </div>
 
-
-{% if person.research_interests %}
+<div>{% if person.research_interests %}
 <h3>Research interests</h3>
 <p>{{person.research_interests}}</p>
 {% endif %}
+</div>
 
-{% regroup person.publication_set.all by year as year_list %}
+<div>{% regroup person.publication_set.all by year as year_list %}
 <ul>
 {% for y in year_list %}
 	<li><strong>{{ y.grouper }}</strong></li>
@@ -32,5 +32,6 @@
 	{% endfor %}
     </ul>
 {% endfor %}
-</ul>
+</ul></div>
+
 {% endblock %}
