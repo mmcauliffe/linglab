@@ -105,7 +105,7 @@ class Publication(models.Model):
         
     def get_author_string(self):
         authors = self.get_authors()
-        if len(authors) == 0:
+        if len(authors) == 1:
             return '%s, %s.' % (authors[0].last_name,authors[0].first_name[0])
         author_string = '%s and %%s' % ('%s, ' * (len(authors)-1))
         author_string = author_string % tuple('%s, %s.' % (x.last_name,x.first_name[0]) for x in authors)
