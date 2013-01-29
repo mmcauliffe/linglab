@@ -20,7 +20,7 @@
 <p>{{person.research_interests}}</p>
 {% endif %}
 
-{% regroup person.publication_set by year as year_list %}
+{% regroup person.publication_set.all by year as year_list %}
 <ul>
 {% for y in year_list %}
 	<li><strong>{{ y.grouper }}</strong></li>
