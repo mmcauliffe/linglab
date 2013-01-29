@@ -2,7 +2,7 @@ from django.contrib import admin
 from mezzanine.pages.admin import PageAdmin
 from .models import LabMember,Collaborator,Publication
 
-class MemberAdmin(admin.ModelAdmin):
+class LabMemberAdmin(admin.ModelAdmin):
     list_display = ('first_name','last_name','email')
     
 admin.site.register(LabMember,LabMemberAdmin)
