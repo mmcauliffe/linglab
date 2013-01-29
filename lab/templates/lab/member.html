@@ -4,6 +4,12 @@
 {% block meta_title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
 {% block title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
 
+{% block breadcrumb_menu %}
+<li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+<li><a href="{% url lab.views.people %}">{% trans "People" %}</a></li>
+<li class="active">{{ person.first_name }} {{ person.last_name }}</li>
+{% endblock %}
+
 {% block main %}
 <div>
 {% if person.picture %}

@@ -4,6 +4,11 @@
 {% block meta_title %}{% trans "Presentations" %}{% endblock %}
 {% block title %}{% trans "Presentations" %}{% endblock %}
 
+{% block breadcrumb_menu %}
+<li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+<li class="active">{% trans "Presentations" %}</li>
+{% endblock %}
+
 {% block main %}
 
 {% regroup presents by year as year_pres %}

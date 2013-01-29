@@ -4,6 +4,11 @@
 {% block meta_title %}{% trans "People" %}{% endblock %}
 {% block title %}{% trans "People" %}{% endblock %}
 
+{% block breadcrumb_menu %}
+<li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+<li class="active">{% trans "People" %}</li>
+{% endblock %}
+
 {% block main %}
 
 {% regroup members by position as pos_list %}
