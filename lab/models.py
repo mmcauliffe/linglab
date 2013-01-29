@@ -84,7 +84,6 @@ class Publication(models.Model):
     state = models.CharField(max_length=50,choices=STATE_CHOICES)
     
     class Meta:
-        abstract = True
         ordering = ['-year','title']
     
     def get_authors(self):
@@ -136,7 +135,6 @@ class Presentation(models.Model):
     location = models.CharField(max_length = 250)
     
     class Meta:
-        abstract = True
         ordering = ['-year','title']
     
     def get_authors(self):
