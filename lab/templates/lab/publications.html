@@ -3,6 +3,11 @@
 {% block meta_title %}Publications{% endblock %}
 {% block title %}Publications{% endblock %}
 
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+<li class="active">{% trans "Publications" %}</li>
+{% endblock %}
+
 {% block main %}
 
 {% regroup pubs by year as year_pubs %}
