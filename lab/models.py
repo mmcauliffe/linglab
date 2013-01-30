@@ -79,9 +79,9 @@ class Publication(models.Model):
     pdf = models.FileField(upload_to = generate_file_name,null=True,blank=True)
     
     journal = models.CharField(max_length=250)
-    volume = models.IntegerField()
-    number = models.IntegerField()
-    pages = models.CharField(max_length=100)
+    volume = models.IntegerField(null=True,blank=True)
+    number = models.IntegerField(null=True,blank=True)
+    pages = models.CharField(max_length=100,null=True,blank=True)
     state = models.CharField(max_length=50,choices=STATE_CHOICES)
     
     class Meta:
