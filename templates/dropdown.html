@@ -10,7 +10,7 @@
         <a href="{% url "home" %}">{% trans "Home" %}</a>
     </li>
     <li class="divider-vertical"></li>
-        {% url "lab.views.presentations" as peop_page %}
+        {% url "lab.views.people" as peop_page %}
     <li class="{%ifequal request.path peop_page %}active{% endifequal%}">
         <a href="{{ peop_page }}">{% trans "People" %}</a>
     </li>
