@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block main %}
-
+<h3>Lab members</h3>
 {% regroup members by position as pos_list %}
 <ul>
 {% for p in pos_list %}
@@ -25,4 +25,16 @@
     </ul>
 {% endfor %}
 </ul>
+{% if collabs %}
+<h3>Friends of lab</h3>
+<ul>
+{% for c in collabs %}
+<li>
+{% if c.link %}<a href="{{c.link}}">{{c.first_name}} {{c.last_name}}</a>
+{% else %} <span>{{c.first_name}} {{c.last_name}}</span>
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

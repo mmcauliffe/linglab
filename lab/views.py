@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect,render_to_response
 from django.template import RequestContext
 
-from .models import Publication,LabMember,Presentation
+from .models import Publication,LabMember,Presentation,Collaborator
 
 def publications(request):
     pubs = Publication.objects.all()
@@ -11,8 +11,9 @@ def publications(request):
 
 def people(request):
     members = LabMember.objects.all()
+    collabs = Collaborator.objects.filter(listable=True)
     #pub_format = '%s (%s). %s'
-    return render_to_response('lab/people.html',{'members':members},context_instance=RequestContext(request))
+    return render_to_response('lab/people.html',{'members':members,'collabs':collabs},context_instance=RequestContext(request))
 
 def presentations(request):
     presents = Presentation.objects.all()
