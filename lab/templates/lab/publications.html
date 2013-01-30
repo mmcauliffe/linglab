@@ -1,7 +1,8 @@
 {% extends "index.html" %}
+{% load i18n pages_tags %}
 
-{% block meta_title %}Publications{% endblock %}
-{% block title %}Publications{% endblock %}
+{% block meta_title %}{% trans "Publications" %}{% endblock %}
+{% block title %}{% trans "Publications" %}{% endblock %}
 
 {% block breadcrumb_menu %}
 <li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
