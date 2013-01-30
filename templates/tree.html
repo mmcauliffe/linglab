@@ -8,14 +8,14 @@
   <li class="first{% if on_home %} active{% endif %}">
     <a href="{% url "home" %}">{% trans "Home" %}</a>
   </li>
-    <li>
-        <a href="{% url "lab.views.people" %}">{% trans "People" %}</a>
+    <li class="{%ifequal request.path peop_page %}active{% endifequal%}">
+        <a href="{{ peop_page }}">{% trans "People" %}</a>
     </li>
-        <li>
-        <a href="{% url "lab.views.publications" %}">{% trans "Publications" %}</a>
+        <li class="{%ifequal request.path pub_page %}active{% endifequal%}">
+        <a href="{{ pub_page }}">{% trans "Publications" %}</a>
     </li>
-        <li>
-        <a href="{% url "lab.views.presentations" %}">{% trans "Presentations" %}</a>
+        <li class="{%ifequal request.path pres_page %}active{% endifequal%}">
+        <a href="{{ pres_page }}">{% trans "Presentations" %}</a>
     </li>
   {% endif %}
   {% if page.in_menu %}

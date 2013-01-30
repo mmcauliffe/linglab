@@ -10,16 +10,19 @@
         <a href="{% url "home" %}">{% trans "Home" %}</a>
     </li>
     <li class="divider-vertical"></li>
-    <li>
-        <a href="{% url "lab.views.people" %}">{% trans "People" %}</a>
+        {% url "lab.views.presentations" as peop_page %}
+    <li class="{%ifequal request.path peop_page %}active{% endifequal%}">
+        <a href="{{ peop_page }}">{% trans "People" %}</a>
     </li>
     <li class="divider-vertical"></li>
-        <li>
-        <a href="{% url "lab.views.publications" %}">{% trans "Publications" %}</a>
+        {% url "lab.views.publications" as pub_page %}
+        <li class="{%ifequal request.path pub_page %}active{% endifequal%}">
+        <a href="{{ pub_page }}">{% trans "Publications" %}</a>
     </li>
     <li class="divider-vertical"></li>
-        <li>
-        <a href="{% url "lab.views.presentations" %}">{% trans "Presentations" %}</a>
+        {% url "lab.views.presentations" as pres_page %}
+        <li class="{%ifequal request.path pres_page %}active{% endifequal%}">
+        <a href="{{ pres_page }}">{% trans "Presentations" %}</a>
     </li>
     <li class="divider-vertical"></li>
     {% endif %}
