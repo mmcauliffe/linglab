@@ -6,7 +6,9 @@
 
 {% block breadcrumb_menu %}
 <li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+        <span class="divider">/</span>
 <li><a href="{% url "lab.views.people" %}">{% trans "People" %}</a></li>
+        <span class="divider">/</span>
 <li class="active">{{ person.first_name }} {{ person.last_name }}</li>
 {% endblock %}
 
