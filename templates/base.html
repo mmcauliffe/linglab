@@ -57,21 +57,7 @@ $(function() {
     {% if settings.SITE_TAGLINE %}<p class="tagline">{{ settings.SITE_TAGLINE }}</p>{% endif %}
     <div class="nav-collapse">
         {% search_form "all" %}
-        {% page_menu "pages/menus/dropdown.html" %}
-        <ul class="nav pull-right">
-        <li>
-        <a href="{% url "lab.views.people" %}">{% trans "People" %}</a>
-    </li>
-    <li class="divider-vertical"></li>
-        <li>
-        <a href="{% url "lab.views.publications" %}">{% trans "Publications" %}</a>
-    </li>
-    <li class="divider-vertical"></li>
-        <li>
-        <a href="{% url "lab.views.presentations" %}">{% trans "Presentations" %}</a>
-    </li>
-    <li class="divider-vertical"></li>
-    </ul>
+        {% page_menu "dropdown.html" %}
     </div>
 </div>
 </div>
