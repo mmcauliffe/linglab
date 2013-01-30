@@ -15,7 +15,7 @@
 {% block main %}
 <div>
 {% if person.picture %}
-<img src="{{person.picture.url}}" style="float: left; padding: 0 10px 10px 0;">
+<img src="{{person.picture.url}}" style="box-shadow: 0 0 0 #fff; float: left; padding: 0 10px 10px 0;">
 {% endif %}
 <span><strong>{{ person.first_name }} {{ person.last_name }}</strong></span><br>
 <span><strong>{{ person.position }}</strong></span><br>
