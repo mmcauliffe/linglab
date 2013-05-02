@@ -90,18 +90,9 @@ class Publication(models.Model):
     def get_authors(self):
         labs = list(WrittenByLab.objects.filter(publication=self))
         collabs = list(WrittenByCollab.objects.filter(publication=self))
-        author_list = []
-        for i in range(1,len(labs)+len(collabs)+1):
-            if len(collabs) == 0:
-                author_list.append(labs.pop(0).person)
-                continue
-            elif len(labs) == 0:
-                author_list.append(collabs.pop(0).person)
-                continue
-            if labs[0].author_number < collabs[0].author_number:
-                author_list.append(labs.pop(0).person)
-            else:
-                author_list.append(collabs.pop(0).person)
+        author_list = labs+collabs
+        author_list.sort(key=lambda x: x.author_number)
+        author_list = [x.person for x in author_list]
         return author_list
         
     def get_author_string(self):
@@ -113,10 +104,13 @@ class Publication(models.Model):
         return author_string
         
     def generate_key(self):
-        key = '%s%d%s' % (self.get_authors()[0].last_name,self.year,self.title.split(" ")[0])
+        author_name = self.get_authors()[0].last_name
+        first_word = self.title.split(" ")[0]
+        key = '%s%d%s' % (author_name,self.year,first_word)
         return key
         
-    def get_bibtext(self):
+    def get_bibtex(self):
+        tex = 
         tex = """@article{%s,
                         title = {%s},
                         author = {%s},
@@ -147,18 +141,9 @@ class Presentation(models.Model):
     def get_authors(self):
         labs = list(PresentedByLab.objects.filter(publication=self))
         collabs = list(PresentedByCollab.objects.filter(publication=self))
-        author_list = []
-        for i in range(1,len(labs)+len(collabs)+1):
-            if len(collabs) == 0:
-                author_list.append(labs.pop(0).person)
-                continue
-            elif len(labs) == 0:
-                author_list.append(collabs.pop(0).person)
-                continue
-            if labs[0].author_number < collabs[0].author_number:
-                author_list.append(labs.pop(0).person)
-            else:
-                author_list.append(collabs.pop(0).person)
+        author_list = labs+collabs
+        author_list.sort(key=lambda x: x.author_number)
+        author_list = [x.person for x in author_list]
         return author_list
         
     def get_author_string(self):
