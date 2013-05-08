@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from django.db import models
 from mezzanine.pages.models import Page
 
@@ -20,6 +21,9 @@ class LabMember(models.Model):
     
     def __unicode__(self):
         return u'%s %s' % (self.first_name,self.last_name)
+        
+    def get_bib_name(self):
+        return u'%s, %s.' % (self.last_name, self.first_name[0])
     
 class Collaborator(models.Model):
     first_name = models.CharField(max_length=250)
@@ -32,6 +36,9 @@ class Collaborator(models.Model):
     
     def __unicode__(self):
         return u'%s %s' % (self.first_name,self.last_name)
+        
+    def get_bib_name(self):
+        return u'%s, %s.' % (self.last_name, self.first_name[0])
     
 class WrittenByLab(models.Model):
     person = models.ForeignKey(LabMember)
@@ -98,10 +105,15 @@ class Publication(models.Model):
     def get_author_string(self):
         authors = self.get_authors()
         if len(authors) == 1:
-            return '%s, %s.' % (authors[0].last_name,authors[0].first_name[0])
-        author_string = '%s and %%s' % ('%s, ' * (len(authors)-1))
-        author_string = author_string % tuple('%s, %s.' % (x.last_name,x.first_name[0]) for x in authors)
+            return authors[0].get_bib_name()
+        author_string = '%sand %%s' % ('%s, ' * (len(authors)-1))
+        author_string = author_string % tuple(x.get_bib_name()  for x in authors)
         return author_string
+        
+    def generate_file_name(self):
+        title = self.title.replace(" ",'')[:20]
+        key = '%d%s' % (self.year,title)
+        return key
         
     def generate_key(self):
         author_name = self.get_authors()[0].last_name
@@ -110,19 +122,14 @@ class Publication(models.Model):
         return key
         
     def get_bibtex(self):
-        tex = 
-        tex = """@article{%s,
-                        title = {%s},
-                        author = {%s},
-                        journal = {%s},
-                        volume = {%d},
-                        number = {%d},
-                        pages = {%s},
-                        year = {%d}
-                        }
-                """ % (self.generate_key(),self.title,self.get_author_string(),
-                        self.journal,self.volume,self.number,self.pages,self.year)
-        return tex
+        tex = "@article{%s,\ntitle = {%s},\nauthor = {%s},\njournal = {%s},\nyear = {%d}%s\n}" 
+        extra = OrderedDict({'volume': self.volume, 'number': self.number,'pages': self.pages})
+        extra = ['%s = {%s}' % (k, str(v)) for k, v in extra.items() if v is not None]
+        extra = ',\n'.join(extra)
+        if extra != '':
+            extra = ',\n' + extra
+        return tex % (self.generate_key(),self.title,self.get_author_string(),
+                        self.journal,self.year,extra)
     
         
 class Presentation(models.Model):
@@ -149,10 +156,15 @@ class Presentation(models.Model):
     def get_author_string(self):
         authors = self.get_authors()
         if len(authors) == 1:
-            return '%s, %s.' % (authors[0].last_name,authors[0].first_name[0])
-        author_string = '%s and %%s' % ('%s, ' * (len(authors)-1))
-        author_string = author_string % tuple('%s, %s.' % (x.last_name,x.first_name[0]) for x in authors)
+            return authors[0].get_bib_name()
+        author_string = '%sand %%s' % ('%s, ' * (len(authors)-1))
+        author_string = author_string % tuple(x.get_bib_name() for x in authors)
         return author_string
+        
+    def generate_file_name(self):
+        title = self.title.replace(" ",'')[:20]
+        key = '%d%s' % (self.year,title)
+        return key
         
     def generate_key(self):
         key = '%s%d%s' % (self.get_authors()[0].last_name,self.year,self.title.split(" ")[0])
