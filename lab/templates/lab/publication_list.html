@@ -10,7 +10,7 @@
             ({% if pub.state == "published" %}{{ pub.year }}{% else %}{{ pub.state }}{% endif %}). 
             {{ pub.title }}.  
             <em>{{ pub.journal }}</em> {{pub.get_extra }}.
-            (<a href="{% url "lab.views.publication_bibtex" pub.id %}">bibtex</a>{% if pub.pdf %}|<a href="{{ pub.pdf.url }}">pdf</a>{% endif %})
+            (<a href="{% url 'lab.views.publication_bibtex' pk=pub.id %}">bibtex</a>{% if pub.pdf %}|<a href="{{ pub.pdf.url }}">pdf</a>{% endif %})
         </li>
     {% endfor %}
     </ul>

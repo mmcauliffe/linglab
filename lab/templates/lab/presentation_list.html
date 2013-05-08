@@ -6,7 +6,7 @@
     <ul>
     {% for pres in y.list %}
         <li>
-        {{ pres.get_author_string }} ({{ pres.year }}). {{ pres.title }}.  <em>{{ pres.conference }}</em>, {{ pres.location }}. (<a href="{% url "lab.views.presentation_bibtex" pres.id %}">bibtex</a>{% if pub.pdf %}|<a href="{{ pres.pdf.url }}">pdf</a>{% endif %})
+        {{ pres.get_author_string }} ({{ pres.year }}). {{ pres.title }}.  <em>{{ pres.conference }}</em>, {{ pres.location }}. (<a href="{% url 'lab.views.presentation_bibtex' pres.id %}">bibtex</a>{% if pub.pdf %}|<a href="{{ pres.pdf.url }}">pdf</a>{% endif %})
         </li>
     {% endfor %}
     </ul>
