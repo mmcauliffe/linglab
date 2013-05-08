@@ -109,7 +109,13 @@ class Publication(models.Model):
         author_string = '%sand %%s' % ('%s, ' * (len(authors)-1))
         author_string = author_string % tuple(x.get_bib_name()  for x in authors)
         return author_string
-        
+    
+    def get_extra(self):
+        extra = ', '.join([x for x in [self.volume,self.number,self.pages] if x is not None])
+        if extra != '':
+            extra = ', '+extra
+        return extra
+    
     def generate_file_name(self):
         title = self.title.replace(" ",'')[:20]
         key = '%d%s' % (self.year,title)

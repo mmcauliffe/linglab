@@ -2,20 +2,17 @@
 <h3>Publications</h3>
 <ul>
 {% for y in year_pubs %}
-	<li><strong>{{ y.grouper }}</strong></li>
-	<ul>
-	{% for pub in y.list %}
-		<li>
-		{{ pub.get_author_string }} 
+    <li><strong>{{ y.grouper }}</strong></li>
+    <ul>
+    {% for pub in y.list %}
+        <li>
+        {{ pub.get_author_string }} 
             ({% if pub.state == "published" %}{{ pub.year }}{% else %}{{ pub.state }}{% endif %}). 
             {{ pub.title }}.  
-            <em>{{ pub.journal }}</em>, 
-                {{ pub.volume }}, 
-                {{ pub.number }}, 
-                {{ pub.pages }}. 
-            (<a href="">bibtex</a>{% if pub.pdf %}|<a href="{{ pub.pdf.url }}">pdf</a>{% endif %})
-		</li>
-	{% endfor %}
+            <em>{{ pub.journal }}</em> {{pub.get_extra }}.
+            (<a href="{% url "lab.views.publication_bibtex" pub.id %}">bibtex</a>{% if pub.pdf %}|<a href="{{ pub.pdf.url }}">pdf</a>{% endif %})
+        </li>
+    {% endfor %}
     </ul>
 {% endfor %}
 </ul>
