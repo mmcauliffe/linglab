@@ -175,6 +175,11 @@ class Presentation(models.Model):
     def generate_key(self):
         key = '%s%d%s' % (self.get_authors()[0].last_name,self.year,self.title.split(" ")[0])
         return key
+        
+    def get_bibtex(self):
+        tex = "@inproceedings{%s,\ntitle = {%s},\nauthor = {%s},\npublisher = {Proceedings of the %s},\nyear = {%d}\n}" 
+        return tex % (self.generate_key(),self.title,self.get_author_string(),
+                        ', '.join([self.conference,self.location]),self.year)
     
     
 class Position(models.Model):
