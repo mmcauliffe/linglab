@@ -1,6 +1,7 @@
 # Create your views here.
 from django.shortcuts import render,redirect,render_to_response
 from django.template import RequestContext
+from django.http import HttpResponse
 
 from .models import Publication,LabMember,Presentation,Collaborator
 
