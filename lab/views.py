@@ -33,7 +33,7 @@ def presentation_bibtex(request,pk):
     key = pres.generate_key()
     bib = pres.get_bibtex()
     response = HttpResponse(bib,mimetype='text/plain')
-    response['Content-Disposition'] = 'attachment; filename=%s.txt' % key
+    #response['Content-Disposition'] = 'attachment; filename=%s.txt' % key
     return response
     
 def publication_bibtex(request,pk):
@@ -44,6 +44,6 @@ def publication_bibtex(request,pk):
     key = pub.generate_key()
     bib = pub.get_bibtex()
     response = HttpResponse(bib,mimetype='text/plain')
-    response['Content-Disposition'] = 'attachment; filename=%s.txt' % key
+    #response['Content-Disposition'] = 'attachment; filename=%s.txt' % key
     return response
     
