@@ -20,7 +20,7 @@
     <strong>Description: </strong> {{ s.description }} <br>
     <strong>Eligibility: </strong> {{ s.requirements }} <br>
     <strong>Location: </strong> {{ location }}<br>
-    <strong>Contact: </strong> {{ s.contact }}, {{ s.contact.email }} <br>
+    <strong>Contact: </strong> {{ s.contact }}, <a href="mailto:{{ s.contact.email }}">{{ s.contact.email }}</a> <br>
     <strong>Reimbursement/time: </strong> {{ s.reimbursement_and_time }} <br>
     </p>
     
