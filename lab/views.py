@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect,render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.views.generic import ListView,DetailView
+from django.conf import settings
 
 from .models import Publication,LabMember,Presentation,Collaborator,Experiment
 
@@ -67,6 +68,7 @@ class ExperimentListView(ListView):
         # Call the base implementation first to get a context
         context = super(ExperimentListView, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
+        context['location'] = settings.LOCATION
         context['PI'] = None
         pis = LabMember.objects.filter(position__importance = 1)
         if len(pis) > 0:
