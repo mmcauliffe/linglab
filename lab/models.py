@@ -186,6 +186,9 @@ class Position(models.Model):
     title = models.CharField(max_length = 100)
     importance = models.IntegerField()
     
+    class Meta:
+        ordering = ['importance','title']
+        
     def __unicode__(self):
         return self.title
 
@@ -200,3 +203,6 @@ class Experiment(models.Model):
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
     reimbursement_and_time = models.CharField(max_length = 250)
     contact = models.ForeignKey(LabMember)
+    
+    class Meta:
+        ordering = ['status','title']

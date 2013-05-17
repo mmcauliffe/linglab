@@ -42,3 +42,8 @@ class PositionAdmin(admin.ModelAdmin):
     list_display = ('title','importance')
     
 admin.site.register(Position,PositionAdmin)
+
+class ExperimentAdmin(admin.ModelAdmin):
+    list_display = ('title','status')
+    
+admin.site.register(Experiment,ExperimentAdmin)
