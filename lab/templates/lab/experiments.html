@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% load i18n future %}
+
+{% block meta_title %}{% trans "Paid studies" %}{% endblock %}
+{% block title %}{% trans "Paid studies" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
+        <span class="divider">/</span>
+<li class="active">{% trans "Paid studies" %}</li>
+{% endblock %}
+
+{% block main %}
+<h3>Paid studies</h3>
+<hr width="300" size="1" noshade=""></hr>
+{% for s in exp %}
+    <p style="text-align: left;" >
+    <strong>Study title: </strong> {{ s.title }} <br>
+    <strong>Researcher: </strong> {{ s.contact }}{% if PI %} and {{ PI }} (PI){% endif %} <br>
+    <strong>Description: </strong> {{ s.description }} <br>
+    <strong>Eligibility: </strong> {{ s.requirements }} <br>
+    <strong>Location: </strong> {{ location }}<br>
+    <strong>Contact: </strong> {{ s.contact }}, {{ s.contact.email }} <br>
+    <strong>Reimbursement/time: </strong> {{ s.reimbursement_and_time }} <br>
+    </p>
+    
+<hr width="300" size="1" noshade=""></hr>
+{% endfor %}
+{% endblock %}

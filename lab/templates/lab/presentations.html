@@ -12,6 +12,6 @@
 
 {% block main %}
 
-{% regroup presents by year as year_pres %}
+{% regroup pres by year as year_pres %}
 {% include "lab/presentation_list.html"%}
 {% endblock %}

@@ -12,7 +12,7 @@ from django.core.files import File
 class SimpleTest(TestCase):
     def setUp(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Set up for testing models.
         """
         self.p1 = Position.objects.create(title='Grad student', importance=3)
         self.p2 = Position.objects.create(title='Undergrad', importance=4)
@@ -35,6 +35,26 @@ class SimpleTest(TestCase):
         WrittenByLab.objects.create(person=self.lm1,publication=self.pub2,author_number = 1)
         WrittenByCollab.objects.create(person=self.cl,publication=self.pub2,author_number = 2)
         WrittenByLab.objects.create(person=self.lm2,publication=self.pub2,author_number = 3)
+        
+        self.exp1 = Experiment.objects.create(title = 'Experiment title',description = 'Blah blah.',requirements = 'So many requirements', reimbursement_and_time = '$10 per hour for one hour',status = 'O', contact = self.lm2)
+    
+        self.exp2 = Experiment.objects.create(title = 'Experiment title',description = 'Blah blah.',requirements = 'So many requirements', reimbursement_and_time = '$10 per hour for one hour',status = 'F', contact = self.lm2)
+   
+    def test_views(self):
+        response = self.client.get("/lab/people/")
+        self.assertEqual(response.status_code,200)
+        response = self.client.get("/lab/member/1/")
+        self.assertEqual(response.status_code,200)
+        response = self.client.get("/lab/publications/")
+        self.assertEqual(response.status_code,200)
+        response = self.client.get("/lab/presentations/")
+        self.assertEqual(response.status_code,200)
+        response = self.client.get("/lab/studies/")
+        self.assertEqual(response.status_code,200)
+        response = self.client.get("/blog/")
+        self.assertEqual(response.status_code,200)
+        response = self.client.get("/")
+        self.assertEqual(response.status_code,200)
     
     def test_lab_presentations(self):
         self.assertEqual(self.pres1.get_authors(), [self.lm1,self.lm2])

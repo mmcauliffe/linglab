@@ -1,38 +1,38 @@
 {% extends "linglab/index.html" %}
 {% load i18n future %}
 
-{% block meta_title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
-{% block title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
+{% block meta_title %}{{ member.first_name }} {{ member.last_name }}{% endblock %}
+{% block title %}{{ member.first_name }} {{ member.last_name }}{% endblock %}
 
 {% block breadcrumb_menu %}
 <li><a href="{% url "home" %}">{% trans "Home" %}</a></li>
         <span class="divider">/</span>
-<li><a href="{% url "lab.views.people" %}">{% trans "People" %}</a></li>
+<li><a href="{% url "member-list" %}">{% trans "People" %}</a></li>
         <span class="divider">/</span>
-<li class="active">{{ person.first_name }} {{ person.last_name }}</li>
+<li class="active">{{ member.first_name }} {{ member.last_name }}</li>
 {% endblock %}
 
 {% block main %}
 <div>
-{% if person.picture %}
-<img src="{{person.picture.url}}" style="box-shadow: 0 0 0 #fff; float: left; padding: 0 10px 10px 0;">
+{% if member.picture %}
+<img src="{{member.picture.url}}" style="box-shadow: 0 0 0 #fff; float: left; padding: 0 10px 10px 0;">
 {% endif %}
-<span><strong>{{ person.first_name }} {{ person.last_name }}</strong></span><br>
-<span><strong>{{ person.position }}</strong></span><br>
-<span><a href="mailto:{{ person.email }}">{{ person.email }}</a></span>
+<span><strong>{{ member.first_name }} {{ member.last_name }}</strong></span><br>
+<span><strong>{{ member.position }}</strong></span><br>
+<span><a href="mailto:{{ member.email }}">{{ member.email }}</a></span>
 </div>
 <br clear="left" /> 
-<div>{% if person.research_interests %}
+<div>{% if member.research_interests %}
 <h3>Research interests</h3>
-<p>{{person.research_interests}}</p>
+<p>{{member.research_interests}}</p>
 {% endif %}
 </div>
 
-<div>{% regroup person.publication_set.all by year as year_pubs %}
+<div>{% regroup pubs by year as year_pubs %}
 {% include "lab/publication_list.html"%}
 </div>
 
-<div>{% regroup person.presentation_set.all by year as year_pres %}
+<div>{% regroup pres by year as year_pres %}
 {% include "lab/presentation_list.html"%}
 </div>
 

@@ -188,3 +188,15 @@ class Position(models.Model):
     
     def __unicode__(self):
         return self.title
+
+class Experiment(models.Model):
+    STATUS_CHOICES = (('N','Not available'),
+                    ('O','Ongoing'),
+                    ('F','Finished'),
+                    )
+    title = models.CharField(max_length = 250)
+    description = models.CharField(max_length = 1000)
+    requirements = models.CharField(max_length = 500)
+    status = models.CharField(max_length=1,choices=STATUS_CHOICES)
+    reimbursement_and_time = models.CharField(max_length = 250)
+    contact = models.ForeignKey(LabMember)
