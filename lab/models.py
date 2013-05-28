@@ -11,7 +11,7 @@ class LabMember(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     
-    keywords = models.CharField(max_length=250)
+    keywords = models.CharField(max_length=250,null=True,blank=True)
     research_interests = models.TextField(null=True,blank=True)
     email = models.EmailField(null=True,blank=True)
     picture = models.ImageField(upload_to='people',null=True,blank=True)

@@ -489,7 +489,7 @@ def deploy():
             run("git pull origin master -f" if git else "hg pull && hg up -C")
         manage("collectstatic -v 0 --noinput")
         manage("syncdb --noinput")
-        #manage("schemamigration lab --auto")
+        manage("schemamigration lab --auto")
         manage("migrate --noinput")
     restart()
     return True
