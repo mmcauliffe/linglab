@@ -478,7 +478,10 @@ def deploy():
         upload_template_and_reload(name)
     with project():
         backup("last.db")
-        run("tar -cf last.tar %s" % static())
+        s = static()
+        if not exists(s):
+            run("mkdir %s" % s)
+        run("tar -cf last.tar %s" % s)
         if env.repo_url.startswith('hg'):
             git = False
         else:
