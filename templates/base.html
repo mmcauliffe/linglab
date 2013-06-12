@@ -57,7 +57,7 @@ $(function() {
     {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
     {% if settings.SITE_TAGLINE %}<p class="tagline">{{ settings.SITE_TAGLINE }}</p>{% endif %}
     <div class="nav-collapse">
-        {% page_menu "dropdown.html" %}
+        {% include "includes/dropdown.html" %}
     </div>
 </div>
 </div>
@@ -89,7 +89,7 @@ $(function() {
 
 <div class="span2 left">
     {% block left_panel %}
-    <div class="panel tree">{% page_menu "tree.html" %}</div>
+    <div class="panel tree">{% include "includes/tree.html" %}</div>
     {% endblock %}
 </div>
 

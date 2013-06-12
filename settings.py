@@ -128,7 +128,7 @@ SECRET_KEY = "399f26ec-6151-49ab-b57e-2a1824fdadca37430d8d-f52a-4202-a873-344e65
 #   * See debug comments, when DEBUG is true
 #   * Receive x-headers
 INTERNAL_IPS = ("127.0.0.1",)
-ALLOWED_HOSTS = ['speechincontext.arts.ubc.ca']
+
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
