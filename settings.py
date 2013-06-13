@@ -310,7 +310,7 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # LAB SETTINGS #
 ################
 
-LAB_LOCATION = 'Speech in Context Lab (upstairs) of the Stores Road Annex, between Main Mall and West Mall'
+LAB_LOCATION = 'Speech in Context Lab of the upstairs level of Stores Road Annex, between Main Mall and West Mall on Stores Road'
 
 LAB_ADDRESS = ' 6368 Stores Road, Vancouver BC V6T 1Z4'
 
