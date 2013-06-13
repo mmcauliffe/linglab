@@ -203,7 +203,8 @@ class Experiment(models.Model):
     requirements = models.CharField(max_length = 500)
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
     reimbursement_and_time = models.CharField(max_length = 250)
-    contact = models.ForeignKey(LabMember)
+    contact = models.ForeignKey(LabMember,related_name='contact')
+    primary_investigator = models.ForeignKey(LabMember,related_name='pi')
     
     class Meta:
         ordering = ['status','title']

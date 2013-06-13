@@ -65,14 +65,9 @@ class ExperimentListView(ListView):
     queryset = Experiment.objects.filter(status = 'O')
     
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(ExperimentListView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['location'] = settings.LOCATION
-        context['PI'] = None
-        pis = LabMember.objects.filter(position__importance = 1)
-        if len(pis) > 0:
-            context['PI'] = pis[0]
+        context['location'] = settings.LAB_LOCATION
+        context['address'] = settings.LAB_ADDRESS
         return context
     
 
